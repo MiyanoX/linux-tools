@@ -15,6 +15,9 @@ do
     # 定义下载文件的名称
     FILENAME="${display_name}_${platform}_${chip_type}.${EXTENSION}"
 
+    # 确保下载目录存在
+    mkdir -p "$DOWNLOAD_DIR/$platform"
+
     echo "Downloading $display_name as $FILENAME..."
     wget -O "$DOWNLOAD_DIR/$platform/$FILENAME" "$location"
     
