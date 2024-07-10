@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # 定义下载目录
-DOWNLOAD_DIR="~/installer/"
+DOWNLOAD_DIR="~/installer"
 
 # 确保下载目录存在
 mkdir -p "$DOWNLOAD_DIR"
