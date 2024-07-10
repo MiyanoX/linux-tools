@@ -8,7 +8,11 @@ mkdir -p "$DOWNLOAD_DIR"
 
 # 从CSV文件中读取下载链接并下载
 while IFS=, read -r platform location display_name volumn_name app_name chip_type params checksum search_name icon profile download_link
-do
+do  
+    # 清理URL，移除可能的非打印字符
+    location=$(echo "$location" | tr -d '\r')
+    download_link=$(echo "$download_link" | tr -d '\r')
+    
     # 获取文件原始扩展名
     EXTENSION="${download_link##*.}"
 
