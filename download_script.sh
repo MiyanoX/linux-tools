@@ -13,18 +13,37 @@ do
     location=$(echo "$location" | tr -d '\r')
     download_link=$(echo "$download_link" | tr -d '\r')
     
+    # 跳过空的下载链接
+    if [ -z "$download_link" ]; then
+        echo "No download link for $display_name. Skipping..."
+        continue
+    fi
+    
     # 获取文件原始扩展名
     EXTENSION="${download_link##*.}"
 
     # 定义下载文件的名称
     FILENAME="${display_name}_${platform}_${chip_type}.${EXTENSION}"
+    TARGET_PATH="$DOWNLOAD_DIR/$platform/$FILENAME"
 
     # 确保下载目录存在
     mkdir -p "$DOWNLOAD_DIR/$platform"
 
-    echo "Downloading $display_name as $FILENAME..."
-    wget -O "$DOWNLOAD_DIR/$platform/$FILENAME" "$download_link"
-    
+    # 检查文件是否已存在并与远程文件相同
+    if [ -f "$TARGET_PATH" ]; then
+        wget -O "$TARGET_PATH.tmp" "$download_link"
+        if cmp -s "$TARGET_PATH" "$TARGET_PATH.tmp"; then
+            echo "$FILENAME is already up to date. Skipping download."
+            rm "$TARGET_PATH.tmp"
+            continue
+        else
+            mv "$TARGET_PATH.tmp" "$TARGET_PATH"
+        fi
+    else
+        echo "Downloading $display_name as $FILENAME..."
+        wget -O "$TARGET_PATH" "$download_link"
+    fi
+
     # 检查 wget 命令是否成功
     if [ $? -ne 0 ]; then
         echo "Failed to download $display_name. Check the URL and network connection."

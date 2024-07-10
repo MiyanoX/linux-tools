@@ -11,12 +11,15 @@ nano /var/lib/docker/volumes/nextcloud-docker_nextcloud/_data/config/config.php
 
 
 ## ssh
-ssh tencent@30.61.33.99
+ssh tencent@30.61.33.6
 pw: tencent
 
 ## http
 /var/www/files
-http://30.61.33.99/files
+http://30.61.33.6/files
+
+Software_List：
+http://30.61.33.6/files/installers/Software_List.csv
 
 
 
