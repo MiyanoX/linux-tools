@@ -26,6 +26,6 @@ do
     else
         echo "$display_name downloaded successfully."
     fi
-done < <(tail -n +2 /path/to/Software_List.csv)
+done < <(tail -n +2 ./Software_List.csv)
 
 echo "All downloads are complete."
