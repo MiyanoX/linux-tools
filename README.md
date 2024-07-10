@@ -15,6 +15,7 @@ ssh tencent@30.61.33.99
 pw: tencent
 
 ## http
+/var/www/files
 http://30.61.33.99/files
 
 

@@ -1,4 +1,5 @@
-﻿win,https://dldir1.qq.com/wework/work_weixin/WeCom_4.1.26.6014.exe,WeCom,WeCom,,All,/S,61e0d9710beb4dd62e3b9946713eb4ea6ddc2831,WXWork,../assets/wxwork.png,all,https://dldir1.qq.com/wework/work_weixin/WeCom_4.1.26.6014.exe
+﻿platform,location,display_name,volumn_name,app_name,chip_type,params,checksum,search_name,icon,profile,download_link
+win,https://dldir1.qq.com/wework/work_weixin/WeCom_4.1.26.6014.exe,WeCom,WeCom,,All,/S,61e0d9710beb4dd62e3b9946713eb4ea6ddc2831,WXWork,../assets/wxwork.png,all,https://dldir1.qq.com/wework/work_weixin/WeCom_4.1.26.6014.exe
 win,https://dldir1.qq.com/weixin/Windows/WeChatSetup.exe,WeChat,WeChat,,All,/S,01886147f599504c5623922a18dd79e41d5d3a8f,WeChat,https://img.icons8.com/color/96/null/weixing.png,all,https://dldir1.qq.com/weixin/Windows/WeChatSetup.exe
 win,https://downloads.slack-edge.com/desktop-releases/windows/x64/4.38.127/SlackSetup.exe,Slack,Slack,,All,/S,31644d4e345da5e7fb3706f149aadd625473fea8,Slack,https://img.icons8.com/color/96/null/slack.png,all,https://downloads.slack-edge.com/desktop-releases/windows/x64/4.38.127/SlackSetup.exe
 win,https://updatecdn.meeting.qq.com/cos/cb3c7bda5205119bd5f4fc9fcc30294e/VooVMeeting_1410000197_3.23.0.510.publish.exe,VooV Meeting,VooV Meeting,,All,/SilentInstall=0,d3055493bc22c79942b1410a5c9c2cc6d9f9e280,VooV,../assets/voov.png,all,https://updatecdn.meeting.qq.com/cos/cb3c7bda5205119bd5f4fc9fcc30294e/VooVMeeting_1410000197_3.23.0.510.publish.exe
@@ -17,4 +18,3 @@ mac,https://updatecdn.meeting.qq.com/cos/577b1e710cdac11aaef996c61e2184cd/VooVMe
 mac,mac/standard/ioav5_setup5.4.12.126.pkg,ioav5,,iOA,Apple,,,iOA,../assets/ioa.png,all,mac/standard/ioav5_setup5.4.12.126.pkg
 mac,mac/standard/ioav5_setup5.4.12.126.pkg,ioav5,,iOA,Intel,,,iOA,../assets/ioa.png,all,mac/standard/ioav5_setup5.4.12.126.pkg
 mac,mac/standard/Microsoft_365_and_Office_16.85.24051214_BusinessPro_Installer.pkg,Office365,,Microsoft_Office,All,,,Microsoft Word,https://img.icons8.com/color/96/null/microsoft-office-2019.png,all,mac/standard/Microsoft_365_and_Office_16.85.24051214_BusinessPro_Installer.pkg
-platform,location,display_name,volumn_name,app_name,chip_type,params,checksum,search_name,icon,profile,download_link
