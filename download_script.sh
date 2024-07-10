@@ -16,7 +16,7 @@ do
     FILENAME="${display_name}_${platform}_${chip_type}.${EXTENSION}"
 
     echo "Downloading $display_name as $FILENAME..."
-    wget -O "$DOWNLOAD_DIR/$FILENAME" "$location"
+    wget -O "$DOWNLOAD_DIR/$platform/$FILENAME" "$location"
     
     # 检查 wget 命令是否成功
     if [ $? -ne 0 ]; then
