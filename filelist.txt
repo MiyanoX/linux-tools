@@ -1,19 +1,19 @@
-http://30.61.33.6/installers/mac/google chrome_mac_All.dmg
-http://30.61.33.6/installers/mac/VooV Meeting_mac_Intel.dmg
-http://30.61.33.6/installers/mac/ioav5_mac_Apple.pkg
-http://30.61.33.6/installers/mac/Office365_mac_All.pkg
-http://30.61.33.6/installers/mac/WeCom_mac_Intel.dmg
-http://30.61.33.6/installers/mac/WeChat_mac_All.dmg
-http://30.61.33.6/installers/mac/ioav5_mac_Intel.pkg
-http://30.61.33.6/installers/mac/Slack_mac_All.dmg
-http://30.61.33.6/installers/mac/WeCom_mac_Apple.dmg
-http://30.61.33.6/installers/mac/VooV Meeting_mac_Apple.dm6
-http://30.61.33.6/installers/win/WeCom_win_All.exe
-http://30.61.33.6/installers/win/WeChat_win_All.exe
-http://30.61.33.6/installers/win/Slack_win_All.exe
-http://30.61.33.6/installers/win/VooV Meeting_win_All.exe
-http://30.61.33.6/installers/win/Acrobat Reader_win_All.exe
-http://30.61.33.6/installers/win/7-Zip_win_All.exe
-http://30.61.33.6/installers/win/Google Chrome_win_All.msi
-http://30.61.33.6/installers/win/ioav5_win_All.exe
-http://30.61.33.6/installers/win/Office365_win_All.zip
+http://30.61.33.6/oitqs/software/mac/google chrome_mac_All.dmg
+http://30.61.33.6/oitqs/software/mac/VooV Meeting_mac_Intel.dmg
+http://30.61.33.6/oitqs/software/mac/ioav5_mac_Apple.pkg
+http://30.61.33.6/oitqs/software/mac/Office365_mac_All.pkg
+http://30.61.33.6/oitqs/software/mac/WeCom_mac_Intel.dmg
+http://30.61.33.6/oitqs/software/mac/WeChat_mac_All.dmg
+http://30.61.33.6/oitqs/software/mac/ioav5_mac_Intel.pkg
+http://30.61.33.6/oitqs/software/mac/Slack_mac_All.dmg
+http://30.61.33.6/oitqs/software/mac/WeCom_mac_Apple.dmg
+http://30.61.33.6/oitqs/software/mac/VooV Meeting_mac_Apple.dm6
+http://30.61.33.6/oitqs/software/win/WeCom_win_All.exe
+http://30.61.33.6/oitqs/software/win/WeChat_win_All.exe
+http://30.61.33.6/oitqs/software/win/Slack_win_All.exe
+http://30.61.33.6/oitqs/software/win/VooV Meeting_win_All.exe
+http://30.61.33.6/oitqs/software/win/Acrobat Reader_win_All.exe
+http://30.61.33.6/oitqs/software/win/7-Zip_win_All.exe
+http://30.61.33.6/oitqs/software/win/Google Chrome_win_All.msi
+http://30.61.33.6/oitqs/software/win/ioav5_win_All.exe
+http://30.61.33.6/oitqs/software/win/Office365_win_All.zip
