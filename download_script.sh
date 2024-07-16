@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # 定义下载目录
-DOWNLOAD_DIR="/var/www/files/installers"
+DOWNLOAD_DIR="/var/www/files/oitqs/software"
 
 # 确保下载目录存在
 mkdir -p "$DOWNLOAD_DIR"
