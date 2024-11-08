@@ -1,4 +1,9 @@
+# 不需要上传的文件
 AutoAppDownloader/chromedriver-mac-arm64/
 AutoAppDownloader/installers/
 AutoAppDownloader/firefoxdriver/
+software/
 .venv/
+
+# 忽略操作系统产生的文件
+.DS_Store

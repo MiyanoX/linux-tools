@@ -1,0 +1,20 @@
+platform,filename,origin_name,update_date,version,latest version,need update,website,download_url,note
+win,WeCom_win_All.exe,WeCom_4.1.30.6008.exe,2024-11-08 15:44:27,4.1.30,4.1.30,0,https://work.weixin.qq.com/#indexDownload,https://work.weixin.qq.com/wework_admin/commdownload?platform=win&from=wwindex,
+win,WeChat_win_All.exe,WeChatSetup.exe,2024-11-08 15:44:32,3.9.12,3.9.12,0,https://pc.weixin.qq.com/,https://dldir1v6.qq.com/weixin/Windows/WeChatSetup.exe,
+win,Slack_win_All.exe,SlackSetup.exe,2024-11-08 15:44:34,4.41.96,4.41.96,0,https://slack.com/intl/zh-cn/downloads/windows,https://slack.com/api/desktop.latestRelease?arch=x64&variant=exe&redirect=true,
+win,VooVMeeting_win_All.exe,VooVMeeting_1410000197_3.27.1.510_x86_64.publish.exe,2024-11-08 15:44:38,3.27.1.510,3.27.1.510,0,https://voovmeeting.com/download-center.html,https://voovmeeting.com/download-win.html?type=x86_64&from=1000,
+win,AcrobatReader_win_All.exe,download?os=Windows+11&name=Reader+2024.004.20220+English+Windows%2864Bit%29&lang=en,2024-11-08 15:44:38,24.003.20112,24.003.20112,0,https://get.adobe.com/reader/,https://get.adobe.com/cn/reader/download?os=Windows+11&name=Reader+2024.004.20220+English+Windows%2864Bit%29&lang=en,Manual Update Link
+win,7-Zip_win_All.exe,4e4bd070-bb80-41f4-b787-72bd5b200e3c?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=releaseassetproduction%2F20241108%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20241108T063916Z&X-Amz-Expires=300&X-Amz-Signature=654a644ef47b86f5bb3a6a8eb5d1ae2772c9b3cd4624c4e50848083e2dab5744&X-Amz-SignedHeaders=host&response-content-disposition=attachment%3B%20filename%3D7z2408-x64.exe&response-content-type=application%2Foctet-stream,2024-11-08 15:44:38,24.08,24.08,0,https://www.7-zip.org/download.html,https://www.7-zip.org/a/7z2408-x64.exe,Manual Update Link
+win,GoogleChrome_win_All.msi,GoogleChromeStandaloneEnterprise64.msi,2024-11-08 15:44:40,130.0.6723.92,130.0.6723.92,0,https://chromeenterprise.google/download/,https://chromeenterprise.google/download/thank-you/?platform=WIN64_MSI&channel=stable&usagestats=0,
+win,ioav5_win_All.exe,,2024-11-08 15:44:48,5.4.24.156,5.4.24.156,0,https://ioa.tencent.com/,,Manual Update Installer
+win,Office365_win_All.zip,,2024-11-08,Stable,Stable,0,,,
+mac,WeCom_mac_Apple.dmg,WeCom_4.1.30.99529_Apple.dmg,2024-11-08 15:44:58,4.1.30,4.1.30,0,https://work.weixin.qq.com/#indexDownload,https://work.weixin.qq.com/wework_admin/commdownload?platform=mac_arm64&from=wwindex,
+mac,WeCom_mac_Intel.dmg,WeCom_4.1.30.90984_Intel.dmg,2024-11-08 15:45:08,4.1.30,4.1.30,0,https://work.weixin.qq.com/#indexDownload,https://work.weixin.qq.com/wework_admin/commdownload?platform=mac&from=wwindex,
+mac,WeChat_mac_All.dmg,WeChatMac.dmg,2024-11-08 15:45:14,3.8.9,3.8.9,0,https://mac.weixin.qq.com/,https://dldir1.qq.com/weixin/mac/WeChatMac.dmg,
+mac,Slack_mac_All.dmg,Slack-4.41.97-macOS.dmg,2024-11-08 15:45:17,4.41.97,4.41.97,0,https://slack.com/intl/zh-cn/downloads/mac,https://slack.com/api/desktop.latestRelease?arch=universal&variant=dmg&redirect=true,
+mac,GoogleChrome_mac_All.dmg,googlechrome.dmg,2024-11-08 15:45:21,130.0.6723.92,130.0.6723.92,0,https://chromeenterprise.google/download/,https://chromeenterprise.google/download/thank-you/?platform=MAC_DMG&channel=stable&usagestats=0,
+mac,VooVMeeting_mac_Intel.dmg,VooVMeeting_1410000198_3.27.1.510.publish.x86_64.dmg,2024-11-08 15:45:25,3.27.1.510,3.27.1.510,0,https://voovmeeting.com/download-center.html,https://voovmeeting.com/download-mac.html?type=1&from=1000,
+mac,VooVMeeting_mac_Apple.dmg,VooVMeeting_1410000198_3.27.1.510.publish.arm64.dmg,2024-11-08 15:45:28,3.27.1.510,3.27.1.510,0,https://voovmeeting.com/download-center.html,https://voovmeeting.com/download-mac.html?type=1&from=1000&macType=apple,
+mac,ioav5_mac_Apple.pkg,,2024-11-08 15:45:36,5.4.15.115,5.4.15.115,0,https://ioa.tencent.com/,,Manual Update Installer
+mac,ioav5_mac_Intel.pkg,,2024-11-08 15:45:44,5.4.15.115,5.4.15.115,0,https://ioa.tencent.com/,,Manual Update Installer
+mac,Office365_mac_All.pkg,,2024-11-08 15:46:27,16.86.24060916,16.86.24060916,0,,,
