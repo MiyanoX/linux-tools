@@ -1,0 +1,4 @@
+AutoAppDownloader/chromedriver-mac-arm64/
+AutoAppDownloader/installers/
+AutoAppDownloader/firefoxdriver/
+.venv/
