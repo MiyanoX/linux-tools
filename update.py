@@ -244,6 +244,7 @@ port = 22  # Default SFTP port
 username = 'tencent'
 password = 'tencent'
 remote_directory = '/var/www/files/oitqs/software/'
+software_list_path = '/var/www/files/oitqs/Software_List_v2.csv'
 
 # Initialize the SFTP client
 try:
@@ -325,10 +326,12 @@ try:
                         
             # 更新成功修改 Software_List_v2.csv 文件的 params 列(Mac VooV Meeting)
             if 'VooVMeeting_mac' in row['filename']:
-              Software_List_v2 = pd.read_csv('./Software_List_v2.csv')
-              Software_List_v2.loc[index, 'volumn_name'] = row['origin_name']  
-              Software_List_v2.to_csv('./Software_List_v2.csv', index=False)
-              
+                Software_List_v2 = pd.read_csv('./Software_List_v2.csv')
+                # 找到location包含VooVMeeting_mac_Intel.dmg的行
+                mask = Software_List_v2['location'].str.contains(row['filename'], na=False)
+                Software_List_v2.loc[mask, 'volumn_name'] = row['origin_name']  
+                Software_List_v2.to_csv('./Software_List_v2.csv', index=False)
+
             # 更新成功修改 version_control csv 文件的 update_date
             version_control_change = pd.read_csv('./version_control.csv')
             version_control_change.loc[index, 'update_date'] = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
@@ -339,7 +342,14 @@ try:
         except Exception as e:
             print(f"处理文件 {row['filename']} 时出错: {str(e)}")
             
-    
+    # 上传 Software_List_v2.csv
+    local_csv_path = './Software_List_v2.csv'
+    if os.path.exists(local_csv_path):
+        print(f"正在上传 Software_List_v2.csv...")
+        sftp.put(local_csv_path, software_list_path)
+        print("Software_List_v2.csv 上传成功")
+    else:
+        print(f"错误：找不到文件 {local_csv_path}")
     
     # Close the SFTP client and transport
     sftp.close()
