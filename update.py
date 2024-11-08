@@ -4,7 +4,7 @@ import os
 from tqdm import tqdm
 import requests
 from bs4 import BeautifulSoup
-from urllib.parse import parse_qs, urlparse
+from urllib.parse import unquote
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from datetime import datetime
@@ -58,6 +58,20 @@ def extract_version_from_filename(filename):
     except Exception as e:
         print(f"提取版本号时出错: {str(e)}")
     return None
+  
+def get_filename_from_url(url):
+    if '7-zip' in url:
+        # 找到 filename%3D 后的文件名部分
+        filename_start = url.find('filename%3D') + len('filename%3D')
+        filename_end = url.find('&', filename_start)
+        if filename_end == -1:
+            filename = url[filename_start:]
+        else:
+            filename = url[filename_start:filename_end]
+        # URL解码
+        return unquote(filename)
+    
+    return url.split('/')[-1]
   
 
 def get_real_download_url(url):
@@ -160,7 +174,7 @@ def download_file(index, url, save_path):
         save_path: 保存路径（包含文件名）
     """
     try:
-        # 如果是 VooV Meeting 的下载页面
+        # 如果是 VooV Meeting or Chrome or Adobe 的下载页面
         if 'voovmeeting' in url or 'chrome' in url or 'adobe' in url:
             real_url = get_real_download_url(url)
             if real_url:
