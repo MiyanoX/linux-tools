@@ -1,4 +1,3 @@
-import paramiko
 import pandas as pd
 import os
 from tqdm import tqdm
@@ -218,6 +217,7 @@ def download_file(index, url, save_path):
         # 更新成功修改 version_control csv 文件的 origin_name
         version_control_change = pd.read_csv('./version_control.csv')
         version_control_change.loc[index, 'origin_name'] = filename
+        version_control_change.loc[index, 'update_date'] = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         version_control_change.to_csv('./version_control.csv', index=False)
         
         return True
@@ -287,124 +287,42 @@ for index, row in version_control.iterrows():
         except Exception as e:
             print(f"处理 ioa 文件时出错: {str(e)}")
 
-# SFTP connection details
-hostname = '30.61.33.6'
-port = 22  # Default SFTP port
-username = 'tencent'
-password = 'tencent'
-remote_directory = '/var/www/files/oitqs/software/'
-software_list_path = '/var/www/files/oitqs/Software_List_v2.csv'
+# 在最后添加以下代码
+print("开始复制文件到目标目录...")
 
-# Initialize the SFTP client
 try:
-    # Create a transport object
-    transport = paramiko.Transport((hostname, port))
-    transport.connect(username=username, password=password)
-    
-    # Initialize the SFTP client
-    sftp = paramiko.SFTPClient.from_transport(transport)
-    
-    print('sftp connected!')
-    
-    # Upload files
-    for index, row in version_control.iterrows():
-        # if row['latest version'] == row['version']:
-        #     print(f"跳过不需要更新的文件: {row['filename']}")
-        #     continue
+    # 确保目标目录存在
+    os.makedirs('/var/www/files/oitqs/software/mac', exist_ok=True)
+    os.makedirs('/var/www/files/oitqs/software/win', exist_ok=True)
 
-        filename = append_version(row['filename'], row['version'])
-        local_path = os.path.join('./software/', row['platform'], row['filename'])
-        remote_path = os.path.join(remote_directory, row['platform'], row['filename'])
-        
-        # 添加调试信息
-        print(f"正在查找文件: {local_path}")
-        print(f"文件是否存在: {os.path.exists(local_path)}")
-        
-        try:
-            if row['version'] == 'stable':
-                print(f"跳过稳定版: {row['filename']}")
-                continue
-            if not os.path.exists(local_path):
-                print(f"文件不存在: {local_path}")
-                continue
+    # 复制 mac 目录下的文件
+    mac_source = './software/mac/'
+    mac_dest = '/var/www/files/oitqs/software/mac/'
+    for file in os.listdir(mac_source):
+        source_path = os.path.join(mac_source, file)
+        dest_path = os.path.join(mac_dest, file)
+        print(f"正在复制: {source_path} -> {dest_path}")
+        shutil.copy2(source_path, dest_path)
+        print(f"复制完成: {source_path} -> {dest_path}")
 
-            # 确保远程目录存在
-            remote_dir = os.path.dirname(remote_path)
-            try:
-                sftp.stat(remote_dir)
-            except IOError:
-                print(f"创建远程目录: {remote_dir}")
-                current_dir = '/'
-                for dir_name in remote_dir.lstrip('/').split('/'):
-                    if dir_name:
-                        current_dir = os.path.join(current_dir, dir_name)
-                        try:
-                            sftp.stat(current_dir)
-                        except IOError:
-                            print(f"创建目录: {current_dir}")
-                            sftp.mkdir(current_dir)
-
-            # 获取文件大小
-            local_filesize = os.path.getsize(local_path)
-            max_retries = 3  # 最大重试次数
-            retry_count = 0
-            
-            while retry_count < max_retries:
-                # 创建进度条回调
-                progress = ProgressCallback(row['filename'], local_filesize)
-                
-                # 上传文件（带进度条）
-                sftp.put(local_path, remote_path, callback=progress)
-                progress.close()
-                
-                # 验证远程文件大小
-                remote_filesize = sftp.stat(remote_path).st_size
-                if remote_filesize == local_filesize:
-                    print(f"成功上传并验证: {row['filename']} (文件大小: {local_filesize} 字节)")
-                    break
-                else:
-                    retry_count += 1
-                    print(f"警告：文件 {row['filename']} 大小不匹配！")
-                    print(f"本地文件大小: {local_filesize} 字节")
-                    print(f"远程文件大小: {remote_filesize} 字节")
-                    
-                    if retry_count < max_retries:
-                        print(f"正在进行第 {retry_count} 次重试...")
-                    else:
-                        print(f"错误：文件 {row['filename']} 上传失败，已达到最大重试次数")
-                        
-            # 更新成功修改 Software_List_v2.csv 文件的 params 列(Mac VooV Meeting)
-            if 'VooVMeeting_mac' in row['filename']:
-                Software_List_v2 = pd.read_csv('./Software_List_v2.csv')
-                # 找到location包含VooVMeeting_mac_Intel.dmg的行
-                mask = Software_List_v2['location'].str.contains(row['filename'], na=False)
-                Software_List_v2.loc[mask, 'volumn_name'] = row['origin_name']  
-                Software_List_v2.to_csv('./Software_List_v2.csv', index=False)
-
-            # 更新成功修改 version_control csv 文件的 update_date
-            version_control_change = pd.read_csv('./version_control.csv')
-            version_control_change.loc[index, 'update_date'] = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-            version_control_change.to_csv('./version_control.csv', index=False)
-
-            # software_list.loc[_, 'version'] = row['latest version']
-            # software_list.to_csv('./version_control.csv', index=False)
-        except Exception as e:
-            print(f"处理文件 {row['filename']} 时出错: {str(e)}")
-            
-    # 上传 Software_List_v2.csv
-    local_csv_path = './Software_List_v2.csv'
-    if os.path.exists(local_csv_path):
-        print(f"正在上传 Software_List_v2.csv...")
-        sftp.put(local_csv_path, software_list_path)
-        print("Software_List_v2.csv 上传成功")
-    else:
-        print(f"错误：找不到文件 {local_csv_path}")
+    # 复制 win 目录下的文件
+    win_source = './software/win/'
+    win_dest = '/var/www/files/oitqs/software/win/'
+    for file in os.listdir(win_source):
+        source_path = os.path.join(win_source, file)
+        dest_path = os.path.join(win_dest, file)
+        print(f"正在复制: {source_path} -> {dest_path}")
+        shutil.copy2(source_path, dest_path)
+        print(f"复制完成: {source_path} -> {dest_path}")
+    # 复制 Software_List_v2.csv
+    csv_source = './Software_List_v2.csv'
+    csv_dest = '/var/www/files/oitqs/Software_List_v2.csv'
+    print(f"正在复制: {csv_source} -> {csv_dest}")
+    shutil.copy2(csv_source, csv_dest)
+    print(f"复制完成: {csv_source} -> {csv_dest}")
     
-    # Close the SFTP client and transport
-    sftp.close()
-    transport.close()
-    print("Upload completed.")
-    
+    print("所有文件复制完成")
+
 except Exception as e:
-    print(f"An error occurred: {e}")
+    print(f"复制文件时出错: {str(e)}")
 

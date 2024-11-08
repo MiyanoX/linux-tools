@@ -12,6 +12,14 @@ http://30.61.33.6/
 Software_List：
 http://30.61.33.6/Software_List.csv
 
+## 定时任务
+sudo crontab -e
+0 0 * * * /bin/bash -c "source ~/anaconda3/etc/profile.d/conda.sh && conda activate update && python3 /var/www/files/oitqs/software/update/ubuntu_update.py >> /var/www/files/oitqs/software/update/log_file.log 2>&1"
+sudo crontab -l
+
+## 查看日志
+tail -f /var/www/files/oitqs/software/update/log_file.log
+
 ## nginx
 tencent@tencentserver:/etc/nginx/sites-available$ sudo nano default 
 tencent@tencentserver:/etc/nginx/sites-available$ sudo systemctl restart nginx
