@@ -226,7 +226,7 @@ def download_file(index, url, save_path):
         return False
 
 # Load the software list
-version_control = pd.read_csv('/var/www/files/oitqs/software/version_control.csv')
+version_control = pd.read_csv('/var/www/files/oitqs/software/update/version_control.csv')
 
 # 在上传文件之前，先更新最新版本信息
 # for _, row in software_list.iterrows():
