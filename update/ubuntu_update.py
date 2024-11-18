@@ -220,7 +220,10 @@ def download_file(index, url, save_path, platform):
         version_control_change.loc[index, 'update_date'] = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         version_control_change.to_csv('/var/www/files/oitqs/software/update/version_control.csv', index=False)
         
-        if 'voovmeeting' in url and platform == 'mac':
+        print(f"url: {url}")
+        print(f"platform: {platform}")
+        if ('meeting' in url) and (platform == 'mac'):
+            print(f"更新 Software_List_v2.csv 文件的 volumn_name: {filename}")
             software_list_change = pd.read_csv('/var/www/files/oitqs/software/update/Software_List_v2.csv')
             software_list_change.loc[index, 'volumn_name'] = filename
             software_list_change.to_csv('/var/www/files/oitqs/software/update/Software_List_v2.csv', index=False)
@@ -284,6 +287,7 @@ for index, row in version_control.iterrows():
                     # 更新成功修改 version_control csv 文件的 origin_name
                     version_control_change = pd.read_csv('/var/www/files/oitqs/software/update/version_control.csv')
                     version_control_change.loc[index, 'origin_name'] = file
+                    version_control_change.loc[index, 'update_date'] = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
                     version_control_change.to_csv('/var/www/files/oitqs/software/update/version_control.csv', index=False)
                     
                     break
@@ -319,6 +323,7 @@ try:
         print(f"正在复制: {source_path} -> {dest_path}")
         shutil.copy2(source_path, dest_path)
         print(f"复制完成: {source_path} -> {dest_path}")
+
     # 复制 Software_List_v2.csv
     csv_source = '/var/www/files/oitqs/software/update/Software_List_v2.csv'
     csv_dest = '/var/www/files/oitqs/Software_List_v2.csv'
