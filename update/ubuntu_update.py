@@ -165,7 +165,7 @@ def get_real_download_url(url):
             pass
 
 
-def download_file(index, url, save_path):
+def download_file(index, url, save_path, platform):
     """
     下载文件并显示进度条
     Args:
@@ -220,7 +220,7 @@ def download_file(index, url, save_path):
         version_control_change.loc[index, 'update_date'] = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         version_control_change.to_csv('/var/www/files/oitqs/software/update/version_control.csv', index=False)
         
-        if 'voov' in url:
+        if 'voovmeeting' in url and platform == 'mac':
             software_list_change = pd.read_csv('/var/www/files/oitqs/software/update/Software_List_v2.csv')
             software_list_change.loc[index, 'volumn_name'] = filename
             software_list_change.to_csv('/var/www/files/oitqs/software/update/Software_List_v2.csv', index=False)
@@ -255,7 +255,7 @@ for index, row in version_control.iterrows():
         save_path = os.path.join(save_dir, row['filename'])
         print(f"开始下载: {download_url}")
         print(f"保存到: {save_path}")
-        download_file(index,download_url, save_path)
+        download_file(index,download_url, save_path, row['platform'])
         
 # 处理 ioa 文件
 print("开始处理 ioa 文件...")
