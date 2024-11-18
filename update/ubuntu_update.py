@@ -220,6 +220,11 @@ def download_file(index, url, save_path):
         version_control_change.loc[index, 'update_date'] = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         version_control_change.to_csv('/var/www/files/oitqs/software/update/version_control.csv', index=False)
         
+        if 'voov' in url:
+            software_list_change = pd.read_csv('/var/www/files/oitqs/software/update/Software_List_v2.csv')
+            software_list_change.loc[index, 'volumn_name'] = filename
+            software_list_change.to_csv('/var/www/files/oitqs/software/update/Software_List_v2.csv', index=False)
+        
         return True
     except Exception as e:
         print(f"下载文件时出错: {str(e)}")

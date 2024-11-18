@@ -12,9 +12,12 @@ http://30.61.33.6/
 Software_List：
 http://30.61.33.6/Software_List.csv
 
+## 本地运行
+sudo /home/tencent/anaconda3/envs/update/bin/python3 /var/www/files/oitqs/software/update/ubuntu_update.py >> /var/www/files/oitqs/software/update/log_file.log 2>&1
+
 ## 定时任务
 sudo crontab -e
-0 0 * * * /bin/bash -c "source ~/anaconda3/etc/profile.d/conda.sh && conda activate update && python3 /var/www/files/oitqs/software/update/ubuntu_update.py >> /var/www/files/oitqs/software/update/log_file.log 2>&1"
+0 0 * * * /bin/bash -c "source /home/tencent/anaconda3/etc/profile.d/conda.sh && conda activate update && /home/tencent/anaconda3/envs/update/bin/python3 /var/www/files/oitqs/software/update/ubuntu_update.py >> /var/www/files/oitqs/software/update/log_file.log 2>&1"
 sudo crontab -l
 
 ## 查看日志
