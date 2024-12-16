@@ -226,14 +226,14 @@ def download_file(index, url, save_path, platform):
             print(f"更新 Software_List_v2.csv 文件的 volumn_name: {filename}")
             software_list_change = pd.read_csv('/var/www/files/oitqs/software/update/Software_List_v2.csv')
             software_list_change.loc[index, 'volumn_name'] = filename
-            software_list_change.to_csv('/var/www/files/oitqs/software/update/Software_List_v2.csv', index=False)
+            software_list_change.to_csv('/var/www/files/oitqs/software/update/Software_List_v2.csv', index=False, line_terminator='\n')
         
         return True
     except Exception as e:
         print(f"下载文件时出错: {str(e)}")
         return False
 
-# Load the software list
+# Load the version_control list
 version_control = pd.read_csv('/var/www/files/oitqs/software/update/version_control.csv')
 
 # 在上传文件之前，先更新最新版本信息

@@ -13,7 +13,7 @@ Software_List：
 http://30.61.33.6/Software_List.csv
 
 ## 本地运行
-sudo /home/tencent/anaconda3/envs/update/bin/python3 /var/www/files/oitqs/software/update/ubuntu_update.py >> /var/www/files/oitqs/software/update/log_file.log 2>&1
+sudo /home/tencent/anaconda3/envs/update/bin/python3 /var/www/files/oitqs/software/update/ubuntu_update.py
 
 ## 定时任务
 sudo crontab -e
