@@ -218,7 +218,7 @@ def download_file(index, url, save_path):
         # 更新成功修改 version_control csv 文件的 origin_name
         version_control_change = pd.read_csv('./version_control.csv')
         version_control_change.loc[index, 'origin_name'] = filename
-        version_control_change.to_csv('./version_control.csv', index=False)
+        version_control_change.to_csv('./version_control.csv', index=False, encoding='utf-8')
         
         return True
     except Exception as e:
@@ -379,12 +379,12 @@ try:
                 # 找到location包含VooVMeeting_mac_Intel.dmg的行
                 mask = Software_List_v2['location'].str.contains(row['filename'], na=False)
                 Software_List_v2.loc[mask, 'volumn_name'] = row['origin_name']  
-                Software_List_v2.to_csv('./Software_List_v2.csv', index=False)
+                Software_List_v2.to_csv('./Software_List_v2.csv', index=False, encoding='utf-8')
 
             # 更新成功修改 version_control csv 文件的 update_date
             version_control_change = pd.read_csv('./version_control.csv')
             version_control_change.loc[index, 'update_date'] = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-            version_control_change.to_csv('./version_control.csv', index=False)
+            version_control_change.to_csv('./version_control.csv', index=False, encoding='utf-8')
 
             # software_list.loc[_, 'version'] = row['latest version']
             # software_list.to_csv('./version_control.csv', index=False)

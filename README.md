@@ -1,11 +1,14 @@
 ## Update Software
+
 sudo python update.py
 
 ## ssh
+
 ssh tencent@30.61.33.6
 pw: tencent
 
 ## http
+
 /var/www/files/
 http://30.61.33.6/
 
@@ -13,18 +16,44 @@ Software_List：
 http://30.61.33.6/Software_List.csv
 
 ## 本地运行
+
 sudo /home/tencent/anaconda3/envs/update/bin/python3 /var/www/files/oitqs/software/update/ubuntu_update.py
 
+sudo /home/tencent/miniconda3/envs/update/bin/python3 /var/www/files/oitqs/software/update/ubuntu_update.py
+
 ## 定时任务
+
 sudo crontab -e
 0 0 * * * /bin/bash -c "source /home/tencent/anaconda3/etc/profile.d/conda.sh && conda activate update && /home/tencent/anaconda3/envs/update/bin/python3 /var/www/files/oitqs/software/update/ubuntu_update.py >> /var/www/files/oitqs/software/update/log_file.log 2>&1"
 sudo crontab -l
 
 ## 查看日志
+
 tail -f /var/www/files/oitqs/software/update/log_file.log
 
+## 更新ubuntu_update
+
+### local
+
+scp /Users/miyano/Development/linux-tools/update/ubuntu\_update.py tencent@30.61.33.6:\~/ubuntu\_update.py
+
+Server
+
+sudo mv ~/ubuntu_update.py /var/www/files/oitqs/software/update/
+
+## 更新Software_List_v2
+
+### local
+
+scp /Users/miyano/Development/linux-tools/update/Software_List_v2.csv tencent@30.61.33.6:\~/Software_List_v2.csv
+
+Server
+
+sudo mv ~/Software_List_v2.csv /var/www/files/oitqs/software/update/
+
 ## nginx
-tencent@tencentserver:/etc/nginx/sites-available$ sudo nano default 
+
+tencent@tencentserver:/etc/nginx/sites-available$ sudo nano default
 tencent@tencentserver:/etc/nginx/sites-available$ sudo systemctl restart nginx
 
 ## DHCP problem

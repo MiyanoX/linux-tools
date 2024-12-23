@@ -1,4 +1,5 @@
 import pandas as pd
+print(pd.__version__)
 import os
 from tqdm import tqdm
 import requests
@@ -223,10 +224,14 @@ def download_file(index, url, save_path, platform):
         print(f"url: {url}")
         print(f"platform: {platform}")
         if ('meeting' in url) and (platform == 'mac'):
-            print(f"更新 Software_List_v2.csv 文件的 volumn_name: {filename}")
+            # 去掉 .dmg 扩展名
+            filename_without_ext = os.path.splitext(filename)[0]
+            print(f"更新 Software_List_v2.csv 文件的 volumn_name: {filename_without_ext}")
             software_list_change = pd.read_csv('/var/www/files/oitqs/software/update/Software_List_v2.csv')
-            software_list_change.loc[index, 'volumn_name'] = filename
-            software_list_change.to_csv('/var/www/files/oitqs/software/update/Software_List_v2.csv', index=False, line_terminator='\n')
+            software_list_change.loc[index, 'volumn_name'] = filename_without_ext
+            software_list_change.to_csv('/var/www/files/oitqs/software/update/Software_List_v2.csv', index=False, lineterminator='\n')
+            file_data = open('/var/www/files/oitqs/software/update/Software_List_v2.csv', 'rb').read()
+            open('/var/www/files/oitqs/software/update/Software_List_v2.csv', 'wb').write(file_data[:-2])
         
         return True
     except Exception as e:
