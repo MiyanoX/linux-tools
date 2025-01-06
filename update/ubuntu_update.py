@@ -12,6 +12,74 @@ import time
 import tempfile
 import shutil
 import json
+import socket
+import re
+
+def get_local_ip():
+    try:
+        # 创建一个 UDP 套接字，不实际发送数据
+        s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        s.connect(("8.8.8.8", 80))  # 使用外部地址确保可以访问
+        ip_address = s.getsockname()[0]
+        s.close()
+        return ip_address
+    except Exception as e:
+        return f"Error: {e}"
+    
+print("Local IP Address:", get_local_ip())
+
+
+def update_server_ip():
+    """更新 Software_List_v2.csv 中的服务器IP地址"""
+    try:
+        # 使用之前定义的get_local_ip()函数获取实际可用的IP
+        local_ip = get_local_ip()
+        if not local_ip or local_ip.startswith('Error:'):
+            print(f"获取本地IP失败: {local_ip}")
+            return False
+            
+        csv_path = '/var/www/files/oitqs/software/update/Software_List_v2.csv'
+        # 首先读取文件内容
+        with open(csv_path, 'r') as file:
+            content = file.read()
+            
+        # 查找当前URL中的IP地址
+        ip_pattern = r'http://(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})/'
+        match = re.search(ip_pattern, content)
+        if not match:
+            print("在CSV文件中未找到IP地址")
+            return False
+            
+        current_ip = match.group(1)
+        
+        # 如果IP相同，无需更新
+        if current_ip == local_ip:
+            print(f"当前IP ({current_ip}) 无需更新")
+            return True
+            
+        # 更新文件内容
+        new_content = content.replace(f'http://{current_ip}/', f'http://{local_ip}/')
+        
+        # 写入更新后的内容
+        with open(csv_path, 'w') as file:
+            file.write(new_content)
+            
+        print(f"已将服务器IP从 {current_ip} 更新为 {local_ip}")
+        
+        # 同时更新目标目录的文件
+        target_path = '/var/www/files/oitqs/Software_List_v2.csv'
+        with open(target_path, 'w') as file:
+            file.write(new_content)
+            
+        print(f"已同步更新 {target_path}")
+        return True
+        
+    except Exception as e:
+        print(f"更新服务器IP时出错: {str(e)}")
+        return False
+    
+# 更新服务器IP
+update_server_ip()
 
 class ProgressCallback:
     def __init__(self, filename, filesize):
@@ -343,4 +411,3 @@ except Exception as e:
     
 # 添加完成时间显示
 print(f"\n任务完成时间: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
-
