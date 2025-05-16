@@ -70,3 +70,5 @@ valid_lft 14177sec和preferred_lft 14177sec表明这个IP地址的有效期限�
 可能的配置原因
 DHCP配置：这个次级IP地址很可能是通过DHCP自动分配的。有时，网络管理员设置了DHCP服务器以提供多个IP地址给单个网络接口，用于网络管理、负载平衡或其他特定的网络需求。
 临时需求：某些应用程序或服务可能临时请求额外的IP地址，用于特定的服务或任务。
+
+### curl -L -o Office365_mac_All.pkg "https://go.microsoft.com/fwlink/?linkid=525133&clcid=0x411&culture=ja-jp&country=jp"
